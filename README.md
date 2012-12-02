@@ -9,7 +9,9 @@ Install the module with: `npm install -g hyde`
 ## Commands
 
 `hyde newsite <name>` - Generate a new static site folder
+
 `hyde generate` - Generate a static version of your site to the `./output` folder
+
 `hyde preview` - Preview the static site with express
 
 ## Contributing
