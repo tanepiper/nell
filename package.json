@@ -35,5 +35,8 @@
     "grunt-contrib-nodeunit": "~0.1.1",
     "grunt-contrib-jshint": "~0.1.0"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "dateformat": "~1.0.3-1.2.3"
+  }
 }
