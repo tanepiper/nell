@@ -1,0 +1,36 @@
+{
+  "name": "hyde",
+  "description": "A bad nodejs clone of jekyll",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tanepiper/hyde",
+  "author": {
+    "name": "Tane Piper",
+    "email": "piper.tane@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tanepiper/hyde.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tanepiper/hyde/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/tanepiper/hyde/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/hyde",
+  "engines": {
+    "node": ">=0.8.15"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0a",
+    "grunt-contrib-nodeunit": "~0.1.1",
+    "grunt-contrib-jshint": "~0.1.0"
+  },
+  "keywords": []
+}
