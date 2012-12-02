@@ -1,26 +1,23 @@
 # hyde
 
-A bad nodejs clone of jekyll
+An opinionated nodejs clone of [Octopress](http://octopress.org).  Not for production use as of yet, still in
+very active development.
 
 ## Getting Started
-Install the module with: `npm install hyde`
+Install the module with: `npm install -g hyde`
 
-```javascript
-var hyde = require('hyde');
-hyde.awesome(); // "awesome"
-```
+## Commands
 
-## Documentation
-_(Coming soon)_
-
-## Examples
-_(Coming soon)_
+`hyde newsite <name>` - Generate a new static site folder
+`hyde generate` - Generate a static version of your site to the `./output` folder
+`hyde preview` - Preview the static site with express
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](http://gruntjs.com/).
+Submit issues and suggestions to [https://github.com/tanepiper/hyde](https://github.com/tanepiper/hyde)
 
 ## Release History
-_(Nothing yet)_
+* 2nd December 2012
+    * Initial release
 
 ## License
 Copyright (c) 2012 Tane Piper  
