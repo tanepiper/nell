@@ -5,7 +5,31 @@ var argv = require('optimist')
           .argv;
 //console.log(argv);
 
-if (argv._[0] === 'newsite') {
+var generate = function() {
+  var current_path = process.cwd();
+  var config;
+  try {
+    config = require(current_path + '/hyde.json');
+  } catch(e) {
+     process.stderr.write('Unable to load hyde.json config file');
+     return;
+  }
+  
+  require(__dirname + '/../lib/generate')(current_path, config, function(err) {
+    if (err) {
+      process.stderr.write(err.message);
+    } else {
+      process.stdout.write('Site "' + config.site.title + '" generated in ' + current_path);
+    }
+  });
+};
+
+var preview = function() {
+  var current_path = process.cwd();
+  require(__dirname + '/../lib/preview')(current_path + '/output');
+};
+
+var newsite = function() {
   var name = (argv._[1]) ? argv._[1] : 'hyde-site';
   var current_path = process.cwd();
 
@@ -16,23 +40,17 @@ if (argv._[0] === 'newsite') {
       process.stdout.write('Site ' + name + ' created in ' + current_path);
     }
   });
+};
+
+
+if (argv._.length === 0 || argv._[0] === 'generate') {
+  generate();
+}
+
+if (argv._[0] === 'newsite') {
+  newsite();
 }
 
 if (argv._[0] === 'preview') {
-  var current_path = process.cwd();
-  require(__dirname + '/../lib/preview')(current_path + '/output');
-}
-
-
-if (argv._[0] === 'generate') {
-  var current_path = process.cwd();
-  var config = require(current_path + '/hyde.json');
-
-  require(__dirname + '/../lib/generate')(current_path, config, function(err) {
-    if (err) {
-      process.stderr.write(err.message);
-    } else {
-      process.stdout.write('Site ' + name + ' generated in ' + current_path);
-    }
-  });
+  preview();
 }
