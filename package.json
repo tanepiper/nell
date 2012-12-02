@@ -1,6 +1,6 @@
 {
   "name": "hyde",
-  "description": "A bad nodejs clone of jekyll",
+  "description": "A simple static site generator",
   "version": "0.1.0",
   "homepage": "https://github.com/tanepiper/hyde",
   "author": {
@@ -21,6 +21,9 @@
     }
   ],
   "main": "lib/hyde",
+  "bin": {
+    "hyde": "./bin/hyde"
+  },
   "engines": {
     "node": ">=0.8.15"
   },

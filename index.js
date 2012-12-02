@@ -7,4 +7,6 @@ render.renderSite({
       title: 'Foo Bar'
     }
   }
+}, function(output) {
+  console.log(output);
 });
