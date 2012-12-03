@@ -1,4 +1,15 @@
+meta(charset='utf8')
 title= site.title
+meta(name='viewport', content='width=device-width, initial-scale=1.0')
+meta(name='description', content='#{site.description}')
+meta(name='author', content='#{site.author}')
+
+block stylesheets
+  link(href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css', rel='stylesheet')
 
 block header-scripts
   //- Header scripts here
+  script(src='http://code.jquery.com/jquery.min.js')
+  script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js')
+
+include partials/nav

@@ -1,11 +1,17 @@
-- if (post) {
-  include post
-- } else if(posts) {
-  - posts.forEach(function(post) {
-    .post
-      h1= post.title
+.container-fluid
+  .row-fluid
+    .span4
+      include sidebar-left
 
-      .main
-        != post.content
-  - });
-- }
+    .span8
+      - if (post) {
+        include post
+      - } else if(posts) {
+        - posts.forEach(function(post) {
+          .post
+            h1= post.title
+
+            .main
+              != post.content
+        - });
+      - }

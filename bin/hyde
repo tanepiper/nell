@@ -7,7 +7,7 @@ var config = require(__dirname + '/../package.json');
 program
   .version(config.version)
   .option('-g --generate', 'Generate a static site output')
-  .option('-s --newsite [name]', 'Create a new static site source folder [hyde-site]')
+  .option('-i --init [name]', 'Create a new static site source folder [hyde-site]')
   .option('-w --preview [port]', 'Preview the static site [4000]', parseInt)
   .option('-n --newpost [name]', 'Generate a new post')
   .option('-p --newpage [name]', 'Generate a new page')
@@ -38,7 +38,7 @@ var preview = function() {
 };
 
 var newsite = function() {
-  var name = program.newsite;
+  var name = program.init;
   var current_path = process.cwd();
 
   require(__dirname + '/../lib/newsite')(current_path, name, {}, function(err) {
@@ -80,66 +80,6 @@ var newitem = function() {
 
 if (program.generate) { generate(); }
 else if (program.preview)  { preview();  }
-else if (program.newsite)  { newsite();  }
+else if (program.init)  { newsite();  }
 else if (program.newpost || program.newpage)  { newitem(); }
 else { generate(); }
-
-
-//console.log(program);
-
-/*
-var argv = require('optimist')
-          .usage('Usage: hyde generate [options]')
-          .argv;
-//console.log(argv);
-
-var generate = function() {
-  var current_path = process.cwd();
-  var config;
-  try {
-    config = require(current_path + '/hyde.json');
-  } catch(e) {
-     process.stderr.write('Unable to load hyde.json config file');
-     return;
-  }
-  
-  require(__dirname + '/../lib/generate')(current_path, config, function(err) {
-    if (err) {
-      process.stderr.write(err.message);
-    } else {
-      process.stdout.write('Site "' + config.site.title + '" generated in ' + current_path);
-    }
-  });
-};
-
-var preview = function() {
-  var current_path = process.cwd();
-  require(__dirname + '/../lib/preview')(current_path + '/output');
-};
-
-var newsite = function() {
-  var name = (argv._[1]) ? argv._[1] : 'hyde-site';
-  var current_path = process.cwd();
-
-  require(__dirname + '/../lib/newsite')(current_path, name, {}, function(err) {
-    if (err) {
-      process.stderr.write(err.message);
-    } else {
-      process.stdout.write('Site ' + name + ' created in ' + current_path);
-    }
-  });
-};
-
-
-if (argv._.length === 0 || argv._[0] === 'generate') {
-  generate();
-}
-
-if (argv._[0] === 'newsite') {
-  newsite();
-}
-
-if (argv._[0] === 'preview') {
-  preview();
-}
-*/
