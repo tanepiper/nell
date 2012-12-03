@@ -2,15 +2,17 @@
 'use strict';
 
 var program = require('commander');
+var clc = require('cli-color');
 var config = require(__dirname + '/../package.json');
 
 program
   .version(config.version)
-  .option('-g --generate', 'Generate a static site output')
-  .option('-i --init [name]', 'Create a new static site source folder [hyde-site]')
-  .option('-w --preview [port]', 'Preview the static site [4000]', parseInt)
-  .option('-n --newpost [name]', 'Generate a new post')
-  .option('-p --newpage [name]', 'Generate a new page')
+  .option('generate', 'Generate a static site output')
+  .option('init [name]', 'Create a new static site source folder [hyde-site]')
+  .option('preview [port]', 'Preview the static site [4000]', parseInt)
+  .option('newpost [name]', 'Generate a new post')
+  .option('newpage [name]', 'Generate a new page')
+  .option('--template [name]', 'Set the template name', 'default')
   .parse(process.argv);
 
 var generate = function() {
@@ -19,33 +21,62 @@ var generate = function() {
   try {
     config = require(current_path + '/hyde.json');
   } catch(e) {
-     process.stderr.write('Unable to load hyde.json config file');
-     return;
+    console.error( clc.red('Unable to load hyde.json config file') );
+    program.help();
+    return;
   }
   
   require(__dirname + '/../lib/generate')(current_path, config, function(err) {
     if (err) {
-      process.stderr.write(err.message);
+      console.error( clc.red(err.message) );
     } else {
-      process.stdout.write('Site "' + config.site.title + '" generated in ' + current_path);
+      console.info( 'Site ' + clc.blue(config.site.title) + ' generated in ' + clc.blue(current_path) );
     }
   });
 };
 
 var preview = function() {
   var current_path = process.cwd();
-  require(__dirname + '/../lib/preview')(current_path + '/output', program.preview);
+  try {
+    config = require(current_path + '/hyde.json');
+  } catch(e) {
+    console.error( clc.red('Unable to load hyde.json config file') );
+    program.help();
+    return;
+  }
+
+  var options = {
+    title: config.site.title,
+    path: current_path + '/output',
+    port: (program.init && typeof program.init === 'number') ? program.init : 4000
+  };
+
+  require(__dirname + '/../lib/preview')(options, function(err) {
+    if (err) {
+      console.error( clc.red(err.message) );
+    } else {
+      console.info( 'Site ' + clc.blue(options.title) + ' preview on ' + clc.blue('http://127.0.0.1:' + options.port) );
+    }
+  });
 };
 
 var newsite = function() {
-  var name = program.init;
-  var current_path = process.cwd();
+  if (program.init && typeof program.init !== 'string') {
+    console.error( clc.red('You must pass a name to initialise a new site') );
+    return;
+  }
 
-  require(__dirname + '/../lib/newsite')(current_path, name, {}, function(err) {
+  var options = {
+    path: process.cwd(),
+    title: program.init,
+    template: program.template
+  };
+
+  require(__dirname + '/../lib/newsite')(options, function(err) {
     if (err) {
-      process.stderr.write(err.message);
+      console.error( clc.red(err.message) );
     } else {
-      process.stdout.write('Site ' + name + ' created in ' + current_path);
+      console.info( 'Site ' + clc.blue(options.title) + ' generated in ' + clc.blue(options.path) );
     }
   });
 };
@@ -77,6 +108,7 @@ var newitem = function() {
     }
   });
 };
+
 
 if (program.generate) { generate(); }
 else if (program.preview)  { preview();  }
