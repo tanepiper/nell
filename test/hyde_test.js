@@ -1,4 +1,12 @@
-'use strict';
+/*
+ * hyde
+ * https://github.com/tanepiper/hyde
+ *
+ * Copyright (c) 2012 Tane Piper
+ * Licensed under the MIT license.
+ * https://github.com/tanepiper/hyde/blob/master/LICENSE-MIT
+ */
+ 'use strict';
 
 var hyde = require('../lib/hyde.js');
 
