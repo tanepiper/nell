@@ -1,7 +1,7 @@
 {
   "name": "hyde",
   "description": "A simple static site generator",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/tanepiper/hyde",
   "author": {
     "name": "Tane Piper",
