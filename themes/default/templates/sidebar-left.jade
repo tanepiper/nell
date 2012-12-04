@@ -1,9 +1,8 @@
 - if (typeof posts !== 'undefined') {
   ul.nav.nav-list
     li.nav-header Recent posts
-    - posts.posts.forEach(function(post) {
+    - posts.forEach(function(post) {
       li
-        a(href='#')
-          #{post.title}
+        a(href='#{post.link}')= post.title
     - });
 - }

@@ -16,29 +16,29 @@ program
   .parse(process.argv);
 
 var generate = function() {
-  var current_path = process.cwd();
+  var site_path = process.cwd();
   var config;
   try {
-    config = require(current_path + '/hyde.json');
+    config = require(site_path + '/hyde.json');
   } catch(e) {
     console.error( clc.red('Unable to load hyde.json config file') );
     program.help();
     return;
   }
   
-  require(__dirname + '/../lib/generate')(current_path, config, function(err) {
+  require(__dirname + '/../lib/generate')(site_path, config, function(err) {
     if (err) {
       console.error( clc.red(err.message) );
     } else {
-      console.info( 'Site ' + clc.blue(config.site.title) + ' generated in ' + clc.blue(current_path) );
+      console.info( 'Site ' + clc.blue(config.site.title) + ' generated in ' + clc.blue(site_path) );
     }
   });
 };
 
 var preview = function() {
-  var current_path = process.cwd();
+  var site_path = process.cwd();
   try {
-    config = require(current_path + '/hyde.json');
+    config = require(site_path + '/hyde.json');
   } catch(e) {
     console.error( clc.red('Unable to load hyde.json config file') );
     program.help();
@@ -47,7 +47,7 @@ var preview = function() {
 
   var options = {
     title: config.site.title,
-    path: current_path + '/output',
+    path: site_path + '/output',
     port: (program.init && typeof program.init === 'number') ? program.init : 4000
   };
 
@@ -83,7 +83,7 @@ var newsite = function() {
 
 var newitem = function() {
   var options;
-  var current_path = process.cwd();
+  var site_path = process.cwd();
 
   if (program.newpost && typeof program.newpost === 'string') {
     options = {
@@ -100,11 +100,11 @@ var newitem = function() {
     return;
   }
 
-  require(__dirname + '/../lib/newitem')(current_path, options, function(err) {
+  require(__dirname + '/../lib/newitem')(site_path, options, function(err) {
     if (err) {
       process.stderr.write(err.message);
     } else {
-      process.stdout.write('' + options.layout + ' ' + options.name + ' created in ' + current_path);
+      process.stdout.write('' + options.layout + ' ' + options.name + ' created in ' + site_path);
     }
   });
 };
