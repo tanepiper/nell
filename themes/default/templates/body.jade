@@ -1,15 +1,13 @@
 .container-fluid
   .row-fluid
     .span8
-      - if (post) {
+      - if (typeof post !== 'undefined') {
         include post
-      - } else if(posts) {
+      - } else if (typeof page !== 'undefined') {
+        include page
+      - } else if (posts) {
         - posts.forEach(function(post) {
-          .post
-            h1= post.title
-
-            .main
-              != post.content
+          include post
         - });
       - }
 
