@@ -1,0 +1,12 @@
+- if (typeof posts !== 'undefined') {
+  .well
+    ul.nav.nav-list
+      li.nav-header
+        i.icon-list
+        | Recent posts
+
+      - posts.forEach(function(post) {
+        li
+          a(href='#{post.link}')= post.title
+      - });
+- }

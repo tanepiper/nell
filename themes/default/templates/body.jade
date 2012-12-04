@@ -1,8 +1,5 @@
 .container-fluid
   .row-fluid
-    .span4
-      include sidebar-left
-
     .span8
       - if (post) {
         include post
@@ -15,3 +12,6 @@
               != post.content
         - });
       - }
+
+    .span4
+      include sidebar

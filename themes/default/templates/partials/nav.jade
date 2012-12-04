@@ -11,5 +11,7 @@
 
       .nav-collapse.collapse
         ul.nav
-          li
-            a(href='#') Home
+          - menu.forEach(function(item) {
+            li
+              a(href="#{item.path}")= item.title
+          - })
