@@ -65,7 +65,7 @@ var preview = function() {
     if (err) {
       console.error( clc.red(err.message) );
     } else {
-      console.info( 'Site ' + clc.blue(options.title) + ' preview on ' + clc.blue('http://127.0.0.1:' + options.port) );
+      console.log( 'Site ' + clc.blue(options.title) + ' preview on ' + clc.blue('http://127.0.0.1:' + options.port) );
     }
   });
 };
@@ -86,7 +86,7 @@ var newsite = function() {
     if (err) {
       console.error( clc.red(err.message) );
     } else {
-      console.info( 'Site ' + clc.blue(options.title) + ' generated in ' + clc.blue(options.path) );
+      console.log( 'Site ' + clc.blue(options.title) + ' generated in ' + clc.blue(options.path) );
     }
   });
 };

@@ -1,0 +1,26 @@
+{
+  "site": {
+    "url": {
+      "href": "http://example.com",
+      "root": "/",
+      "permalink": "/blog/:year/:month/:day/:title"
+    },
+    "title": "Hyde Site",
+    "subtitle": "A site generated with Hyde",
+    "author": "",
+    "search": "http://google.com/search",
+    "description": "",
+
+    "theme": {
+      "name": "default",
+      "index": "default.jade"
+    },
+
+    "date_format": "dddd, dS mmmm yyyy @ h:MMTT",
+    "paginate": {
+      "number_per_page" : 5
+    },
+
+    "google_analytics_tracking_id": ""
+  }
+}
