@@ -2,7 +2,7 @@
   h1= post.title
 
   .meta.alert.alert-info
-    | Posted on #{dateformat(post.date, 'dddd, dS mmmm yyyy @ h:MMTT')} in categories #{post.tags.join(', ')}
+    | Posted on #{plugins.dateformat(post.date, 'dddd, dS mmmm yyyy @ h:MMTT')} in categories #{post.tags.join(', ')}
 
   .main.well
     != post.content

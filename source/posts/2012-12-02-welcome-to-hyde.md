@@ -8,3 +8,5 @@ published: true
 -->
 
 Welcome to [hyde](http://github.com/tanepiper/hyde) - an opinionated static site generator using nodejs.
+
+{% gist 4202899 interval.js %}
