@@ -22,5 +22,13 @@
     },
 
     "google_analytics_tracking_id": ""
-  }
+  },
+
+  "menu": [{
+    "title": "Home",
+    "path": "/"
+  }, {
+    "title": "About",
+    "path": "/about/"
+  }]
 }

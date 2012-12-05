@@ -98,23 +98,23 @@ var newitem = function() {
   if (program.newpost && typeof program.newpost === 'string') {
     options = {
       name: program.newpost,
-      layout: 'post'
+      type: 'post'
     };
   } else if (program.newpage && typeof program.newpage === 'string') {
     options = {
       name: program.newpage,
-      layout: 'page'
+      type: 'page'
     };
   } else {
-    process.stderr.write('Pass a title for your new post');
+    console.error( clc.red('You must pass a title for your new item') );
     return;
   }
 
   require(__dirname + '/../lib/newitem')(site_path, options, function(err) {
     if (err) {
-      process.stderr.write(err.message);
+      console.error( clc.red(err.message) );
     } else {
-      process.stdout.write('' + options.layout + ' ' + options.name + ' created in ' + site_path);
+      console.log( 'Site ' + clc.blue(options.type + ' ' + options.name) + ' generated in ' + clc.blue(site_path) );
     }
   });
 };
