@@ -1,15 +1,14 @@
-.container-fluid
-  .row-fluid
-    .span8
-      - if (typeof post !== 'undefined') {
-        include post
-      - } else if (typeof page !== 'undefined') {
-        include page
-      - } else if (posts) {
-        - posts.forEach(function(post) {
-          include post
-        - });
-      - }
+extends default
 
-    .span4
-      include sidebar
+block body
+  .container-fluid
+    .row-fluid
+      .span8
+        - if (posts) {
+          - posts.forEach(function(post) {
+            include post
+          - });
+        - }
+
+      .span4
+        include sidebar

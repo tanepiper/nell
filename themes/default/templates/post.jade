@@ -1,11 +1,14 @@
-.post
-  h1= post.title
+extends default
 
-  .meta.alert.alert-info
-    | Posted on #{plugins.dateformat(post.date, 'dddd, dS mmmm yyyy @ h:MMTT')}
-    - if (post.categories) {
-      |&nbsp;in categories #{post.categories.join(', ')}
-    - }
+block body
+  .post
+    h1= post.title
 
-  .main.well
-    != post.content
+    .meta.alert.alert-info
+      | Posted on #{plugins.dateformat(post.date, site.date_format)}
+      - if (post.categories) {
+        |&nbsp;in categories #{post.categories.join(', ')}
+      - }
+
+    .main.well
+      != post.content

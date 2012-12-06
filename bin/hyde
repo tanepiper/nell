@@ -32,7 +32,7 @@ var generate = function() {
       console.error( clc.red(err.message) );
       program.help();
     } else {
-      console.info( 'Site ' + clc.blue(config.site.title) + ' generated in ' + clc.blue(site_path) );
+      console.info( 'Site generated in ' + clc.blue(site_path) );
     }
   });
 };
