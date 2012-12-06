@@ -26,19 +26,11 @@ program
   .parse(process.argv);
 
 var generate = function() {
-  var site_path = process.cwd();
-  var config;
-  try {
-    config = require(site_path + '/hyde.json');
-  } catch(e) {
-    console.error( clc.red('Unable to load hyde.json config file') );
-    program.help();
-    return;
-  }
-  
-  require(__dirname + '/../lib/generate')(site_path, config, function(err) {
+  var site_path = process.cwd();  
+  require(__dirname + '/../lib/generate')(site_path, function(err) {
     if (err) {
       console.error( clc.red(err.message) );
+      program.help();
     } else {
       console.info( 'Site ' + clc.blue(config.site.title) + ' generated in ' + clc.blue(site_path) );
     }
@@ -64,6 +56,7 @@ var preview = function() {
   require(__dirname + '/../lib/preview')(options, function(err) {
     if (err) {
       console.error( clc.red(err.message) );
+      program.help();
     } else {
       console.log( 'Site ' + clc.blue(options.title) + ' preview on ' + clc.blue('http://127.0.0.1:' + options.port) );
     }
@@ -85,6 +78,7 @@ var newsite = function() {
   require(__dirname + '/../lib/newsite')(options, function(err) {
     if (err) {
       console.error( clc.red(err.message) );
+      program.help();
     } else {
       console.log( 'Site ' + clc.blue(options.title) + ' generated in ' + clc.blue(options.path) );
     }
@@ -113,6 +107,7 @@ var newitem = function() {
   require(__dirname + '/../lib/newitem')(site_path, options, function(err) {
     if (err) {
       console.error( clc.red(err.message) );
+      program.help();
     } else {
       console.log( 'Site ' + clc.blue(options.type + ' ' + options.name) + ' generated in ' + clc.blue(site_path) );
     }
