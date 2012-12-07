@@ -1,21 +1,24 @@
-.container-fluid
-  .row-fluid
-    .span8
-      - if (posts) {
-        - posts.forEach(function(post) {
-          .post
-            h1= post.title
+extends default
 
-            .meta.alert.alert-info
-              | Posted on #{plugins.dateformat(post.date, site.date_format)}
-              - if (post.categories) {
-                |&nbsp;in categories #{post.categories.join(', ')}
-              - }
+block body
+  .container-fluid
+    .row-fluid
+      .span8
+        - if (posts) {
+          - posts.forEach(function(post) {
+            .post
+              h1= post.title
 
-            .main.well
-              != post.content
-        - });
-      - }
+              .meta.alert.alert-info
+                | Posted on #{plugins.dateformat(post.date, site.date_format)}
+                - if (post.categories) {
+                  |&nbsp;in categories #{post.categories.join(', ')}
+                - }
 
-    .span4
-      include sidebar
+              .main.well
+                != post.content
+          - });
+        - }
+
+      .span4
+        include sidebar
