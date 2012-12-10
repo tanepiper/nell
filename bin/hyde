@@ -11,12 +11,55 @@
 
 'use strict';
 
+var fs = require('fs');
+var path = require('path');
+
 var program = require('commander');
-var clc = require('cli-color');
 var config = require(__dirname + '/../package.json');
 
 program
-  .version(config.version)
+  .version(config.version);
+
+var all_libs = fs.readdirSync( path.join(__dirname, '..', 'lib'));
+var libs = all_libs.map(function(each) {
+  if (each.indexOf('.js') !== -1) {
+    return each.replace('.js', '');
+  }
+  return false;
+});
+
+
+var done = function(err, results) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+    return;
+  }
+  console.log(results);
+};
+
+libs.forEach(function(command) {
+  if (command) {
+    var createCommand = function(command_name) {
+      var command = require( path.join(__dirname, '..', 'lib', command_name) );
+      var command_line = command.key + ((command.args) ? ' ' + command.args : '');
+      program
+        .command(command_line)
+        .description(command.desc)
+        .action(function(argument, cmd) {
+          var site_path = process.cwd();
+          command.run(site_path, argument, cmd, done);
+        });
+    };
+    createCommand(command);
+  }
+});
+
+program.parse(process.argv);
+
+
+
+/*
   .option('generate', 'Generate a static site output')
   .option('init [name]', 'Create a new static site source folder [hyde-site]')
   .option('preview [port]', 'Preview the static site [4000]', parseInt)
@@ -120,3 +163,4 @@ else if (program.preview)  { preview();  }
 else if (program.init)  { newsite();  }
 else if (program.newpost || program.newpage)  { newitem(); }
 else { generate(); }
+*/
