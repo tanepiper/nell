@@ -13,7 +13,7 @@
 
 var fs = require('fs');
 var path = require('path');
-
+require('colorful').colorful();
 var program = require('commander');
 var config = require(__dirname + '/../package.json');
 
@@ -31,11 +31,11 @@ var libs = all_libs.map(function(each) {
 
 var done = function(err, results) {
   if (err) {
-    console.log(err);
-    process.exit(1);
+    console.log(err.message.to.red.color);
+    program.help();
     return;
   }
-  console.log(results);
+  console.log(results.to.blue.color);
 };
 
 libs.forEach(function(command) {
