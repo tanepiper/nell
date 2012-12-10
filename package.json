@@ -1,7 +1,7 @@
 {
   "name": "hyde",
   "description": "A simple static site generator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/tanepiper/hyde",
   "author": {
     "name": "Tane Piper",
@@ -49,7 +49,6 @@
     "async": "~0.1.22",
     "marked": "~0.2.6",
     "underscore": "~1.4.2",
-    "findit": "~0.1.2",
     "colorful": "~1.0.1"
   }
 }
