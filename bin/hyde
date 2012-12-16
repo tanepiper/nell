@@ -13,6 +13,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var util = require('util');
 require('colorful').colorful();
 var program = require('commander');
 var pkg = require(__dirname + '/../package.json');
@@ -20,12 +21,12 @@ var site_path = process.cwd();
 
 var done = function(err, results) {
   if (err) {
-    console.log( ('' + err).to.red.color);
+    console.log( util.format('%s', err).to.red.color);
     program.help();
     return;
   }
   if (results) {
-    console.log( (''+results).to.blue.color);
+    console.log( util.format('%s', results).to.blue.color);
   }
 };
 
@@ -34,14 +35,14 @@ var processCommand = function(command) {
     command = command.replace('.js', '');
     var createCommand = function(command_name) {
       var command = require( path.join(__dirname, '..', 'lib', command_name) );
-      var command_line = command.key + ((command.args) ? ' ' + command.args : '');
+      var command_line = util.format('%s %s', command.key, command.args);
       program
         .command(command_line)
         .description(command.desc)
         .action(function(args, cmd) {
           if (command.args && typeof args === 'undefined') {
             if (!command.default) {
-              return done( new Error('You have not passed the ' + command.args + ' argument for command ' + command.key) );
+              return done( new Error(util.format('You have not passed the %s argument for command %s', command.args, command.key)));
             } 
             args = command.default;
           }
