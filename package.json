@@ -1,7 +1,7 @@
 {
   "name": "hyde",
   "description": "A simple static site generator",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "homepage": "https://github.com/tanepiper/hyde",
   "author": {
     "name": "Tane Piper",
@@ -33,7 +33,8 @@
   "devDependencies": {
     "grunt": "~0.4.0a",
     "grunt-contrib-nodeunit": "~0.1.1",
-    "grunt-contrib-jshint": "~0.1.0"
+    "grunt-contrib-jshint": "~0.1.0",
+    "longjohn": "0.0.4"
   },
   "keywords": [],
   "dependencies": {

@@ -51,11 +51,13 @@ var processCommand = function(command_name) {
         } 
         args = command.default;
       }
-      command.run(site_path, args, cmd, done);
+      command.run(site_path, args, cmd || args, done);
     });
 };
 
-program.version(pkg.version);
+program
+  .version(pkg.version)
+  .option('-t --theme [name]', 'Overide the theme used in the hyde.json file', String);
 
 fs.readdirSync( path.join(__dirname, '..', 'lib') )
   .filter(function(file) { return file.indexOf('.js') !== -1; })
