@@ -42,26 +42,28 @@ Edit the templates in the template folder with your layout.
 
 When you generate a site, a `hyde.json` file will be generated in the root, it looks like this:
 
+```json
+{
+  "theme": {
+    "name": "default",
+    "index": "default.jade"
+  },
+  "site": {
+    "title": "Example Site",
+    "url": "http://example.com"
+  },
+  "menu": [
     {
-      "theme": {
-        "name": "default",
-        "index": "default.jade"
-      },
-      "site": {
-        "title": "Example Site",
-        "url": "http://example.com"
-      },
-      "menu": [
-        {
-          "title": "Home",
-          "path": "/"
-        },
-        {
-          "title": "About",
-          "path": "/about/"
-        }
-      ]
+      "title": "Home",
+      "path": "/"
+    },
+    {
+      "title": "About",
+      "path": "/about/"
     }
+  ]
+}
+```
     
 Edit this file to change your site settings such as title, url, theme and menu.
 
