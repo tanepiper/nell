@@ -15,24 +15,21 @@ var fs = require('fs');
 var path = require('path');
 require('colorful').colorful();
 var program = require('commander');
-var config = require(__dirname + '/../package.json');
+var pkg = require(__dirname + '/../package.json');
 var site_path = process.cwd();
 
 var done = function(err, results) {
   if (err) {
-    console.log(err.message.to.red.color);
+    console.log( ('' + err).to.red.color);
     program.help();
     return;
   }
   if (results) {
-    console.log(results.to.blue.color);
+    console.log( (''+results).to.blue.color);
   }
 };
 
-program
-  .version(config.version);
-
-fs.readdirSync( path.join(__dirname, '..', 'lib')).forEach(function(command) {
+var processCommand = function(command) {
   if (command.indexOf('.js') !== -1) {
     command = command.replace('.js', '');
     var createCommand = function(command_name) {
@@ -41,19 +38,23 @@ fs.readdirSync( path.join(__dirname, '..', 'lib')).forEach(function(command) {
       program
         .command(command_line)
         .description(command.desc)
-        .action(function(argument, cmd) {
-          if (command.args && typeof argument === 'undefined') {
+        .action(function(args, cmd) {
+          if (command.args && typeof args === 'undefined') {
             if (!command.default) {
-              return done( new Error('You have not passed the ' + command.args + ' argument for command ' + command.key) );  
+              return done( new Error('You have not passed the ' + command.args + ' argument for command ' + command.key) );
             } 
-            argument = command.default;
+            args = command.default;
           }
-          command.run(site_path, argument, cmd, done);
+          command.run(site_path, args, cmd, done);
         });
     };
     return createCommand(command);
   }
   return false;
-});
+};
+
+program.version(pkg.version);
+
+fs.readdirSync( path.join(__dirname, '..', 'lib') ).forEach(processCommand);
 
 program.parse(process.argv);

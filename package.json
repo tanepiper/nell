@@ -49,6 +49,7 @@
     "async": "~0.1.22",
     "marked": "~0.2.6",
     "underscore": "~1.4.2",
-    "colorful": "~1.0.1"
+    "colorful": "~1.0.1",
+    "cliff": "~0.1.8"
   }
 }
