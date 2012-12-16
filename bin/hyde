@@ -24,8 +24,7 @@ var site_path = process.cwd();
 
 var logger = new(winston.Logger)({
   transports: [
-    new (winston.transports.Console)(),
-    new winston.transports.File({ filename: path.join(__dirname, '..', 'hyde.debug.log') })
+    new (winston.transports.Console)()
   ]
 });
 
@@ -39,32 +38,28 @@ var done = function(err, results) {
   }
 };
 
-var processCommand = function(command) {
-  if (command.indexOf('.js') !== -1) {
-    command = command.replace('.js', '');
-    var createCommand = function(command_name) {
-      var command = require( path.join(__dirname, '..', 'lib', command_name) );
-      var command_line = util.format('%s %s', command.key, command.args);
-      program
-        .command(command_line)
-        .description(command.desc)
-        .action(function(args, cmd) {
-          if (command.args && typeof args === 'undefined') {
-            if (!command.default) {
-              return done( new Error(util.format('You have not passed the %s argument for command %s', command.args, command.key)));
-            } 
-            args = command.default;
-          }
-          command.run(site_path, args, cmd, done);
-        });
-    };
-    return createCommand(command);
-  }
-  return false;
+var processCommand = function(command_name) {
+  var command = require( path.join(__dirname, '..', 'lib', command_name) );
+  var command_line = util.format('%s %s', command.key, command.args);
+  program
+    .command(command_line)
+    .description(command.desc)
+    .action(function(args, cmd) {
+      if (command.args && typeof args === 'undefined') {
+        if (!command.default) {
+          return done( new Error(util.format('You have not passed the %s argument for command %s', command.args, command.key)));
+        } 
+        args = command.default;
+      }
+      command.run(site_path, args, cmd, done);
+    });
 };
 
 program.version(pkg.version);
 
-fs.readdirSync( path.join(__dirname, '..', 'lib') ).forEach(processCommand);
+fs.readdirSync( path.join(__dirname, '..', 'lib') )
+  .filter(function(file) { return file.indexOf('.js') !== -1; })
+  .map(function(command) { return command.replace('.js', ''); })
+  .forEach(processCommand);
 
 program.parse(process.argv);
