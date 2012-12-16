@@ -14,9 +14,11 @@ Install the module with: `npm install -g hyde`
 
 * `hyde preview` - Preview the static site with express
 
-* `hyde newpost <name>` - Create a new markdown post
+* `hyde new_post <name>` - Create a new markdown post
 
-* `hyde newpage <name>` - Create a new markdown page
+* `hyde new_page <name>` - Create a new markdown page
+
+* `hyde plugins` - See a list of all plugins available in your theme and markdown files
 
 For a full list of commands type `hyde --help`
 
@@ -44,28 +46,61 @@ When you generate a site, a `hyde.json` file will be generated in the root, it l
 
 ```json
 {
-  "theme": {
-    "name": "default",
-    "index": "default.jade"
-  },
   "site": {
-    "title": "Example Site",
-    "url": "http://example.com"
-  },
-  "menu": [
-    {
-      "title": "Home",
-      "path": "/"
+    "url": {
+      "href": "http://example.com",
+      "root": "/",
+      "permalink": "/blog/:year/:month/:day/:title"
     },
-    {
-      "title": "About",
-      "path": "/about/"
-    }
-  ]
+    "title": "Hyde Site",
+    "subtitle": "A site generated with Hyde",
+    "author": "",
+    "search": "http://google.com/search",
+    "description": "",
+
+    "theme": {
+      "name": "default",
+      "index": "default.jade"
+    },
+
+    "date_format": "dddd, dS mmmm yyyy @ h:MMTT",
+    "paginate": {
+      "number_per_page" : 5
+    },
+
+    "google_analytics_tracking_id": ""
+  },
+
+  "menu": [{
+    "title": "Home",
+    "path": "/"
+  }, {
+    "title": "About",
+    "path": "/about/"
+  }]
 }
 ```
     
 Edit this file to change your site settings such as title, url, theme and menu.
+
+## Plugins
+
+Plugins are modules that are included in your site `plugins` folder, as well as currently two included in the
+hyde directory - `dateformat` and `gist`.
+
+Plugins can be used in posts with the `{% %}` tags - each plugin takes a set of required and optional arguments.
+For example, the gist plugin can be used like so in markdown
+
+    ... Some markdown content ...
+    {% gist 4202899 interval.js %}
+    ... Some more markdown content ...
+    
+They are also available in template files on the plugin object, for example in a jade template:
+
+    h3 Posted on #{plugins.dateformat(post.date, site.date_format)}
+    
+Plugins are still an early development and the format may change to support more powerful features, but for now
+they are simple synchronous functions that must return a value that can be output as a string (String, Number)
 
 ## Contributing
 Submit issues and suggestions to [https://github.com/tanepiper/hyde](https://github.com/tanepiper/hyde)
