@@ -14,19 +14,28 @@
 var fs = require('fs');
 var path = require('path');
 var util = require('util');
-require('colorful').colorful();
+var winston = require('winston');
 var program = require('commander');
+
+require('colorful').colorful();
+
 var pkg = require(__dirname + '/../package.json');
 var site_path = process.cwd();
 
+var logger = new(winston.Logger)({
+  transports: [
+    new (winston.transports.Console)(),
+    new winston.transports.File({ filename: path.join(__dirname, '..', 'hyde.debug.log') })
+  ]
+});
+
 var done = function(err, results) {
   if (err) {
-    console.log( util.format('%s', err).to.red.color);
-    program.help();
-    return;
+    logger.error( util.format('%s', err).to.red.color);
+    return program.help();
   }
   if (results) {
-    console.log( util.format('%s', results).to.blue.color);
+    logger.info( util.format('%s', results).to.blue.color);
   }
 };
 

@@ -50,6 +50,8 @@
     "marked": "~0.2.6",
     "underscore": "~1.4.2",
     "colorful": "~1.0.1",
-    "cliff": "~0.1.8"
+    "cliff": "~0.1.8",
+    "winston": "~0.6.2",
+    "concat-stream": "~0.1.0"
   }
 }
