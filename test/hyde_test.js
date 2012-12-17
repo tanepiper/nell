@@ -1,14 +1,14 @@
 /*
- * hyde
- * https://github.com/tanepiper/hyde
+ * nell
+ * https://github.com/tanepiper/nell
  *
  * Copyright (c) 2012 Tane Piper
  * Licensed under the MIT license.
- * https://github.com/tanepiper/hyde/blob/master/LICENSE-MIT
+ * https://github.com/tanepiper/nell/blob/master/LICENSE-MIT
  */
  'use strict';
 
-var hyde = require('../lib/hyde.js');
+var nell = require('../lib/nell.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -33,7 +33,7 @@ var hyde = require('../lib/hyde.js');
 exports['createSite'] = {
   setUp: function(done) {
     var self = this;
-    hyde.createSite(function(data) {
+    nell.createSite(function(data) {
       self.data = data;
       done();
     });

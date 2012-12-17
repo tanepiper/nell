@@ -1,30 +1,30 @@
-# hyde
+# nell
 
 An opinionated nodejs clone of [Octopress](http://octopress.org).  Not for production use as of yet, still in
 very active development.
 
 ## Getting Started
-Install the module with: `npm install -g hyde`
+Install the module with: `npm install -g nell`
 
 ## Commands
 
-* `hyde init <name>` - Generate a new static site folder
+* `nell init <name>` - Generate a new static site folder
 
-* `hyde generate` - Generate a static version of your site to the `./output` folder
+* `nell generate` - Generate a static version of your site to the `./output` folder
 
-* `hyde preview` - Preview the static site with express
+* `nell preview` - Preview the static site with express
 
-* `hyde new_post <name>` - Create a new markdown post
+* `nell new_post <name>` - Create a new markdown post
 
-* `hyde new_page <name>` - Create a new markdown page
+* `nell new_page <name>` - Create a new markdown page
 
-* `hyde plugins` - See a list of all plugins available in your theme and markdown files
+* `nell plugins` - See a list of all plugins available in your theme and markdown files
 
-For a full list of commands type `hyde --help`
+For a full list of commands type `nell --help`
 
 ## Creating a site
 
-To create a site, first type `hyde init mysite` then switch in to the directory.
+To create a site, first type `nell init mysite` then switch in to the directory.
 
 This will generate a folder containing:
 
@@ -35,14 +35,14 @@ This will generate a folder containing:
             | - template -
                          | - default
 
-From there, type `hyde generate` and the HTML will be generated to the `output` directory. To preview, type
-`hyde preview`.
+From there, type `nell generate` and the HTML will be generated to the `output` directory. To preview, type
+`nell preview`.
 
 Edit the templates in the template folder with your layout.
 
-## hyde.json file
+## nell.json file
 
-When you generate a site, a `hyde.json` file will be generated in the root, it looks like this:
+When you generate a site, a `nell.json` file will be generated in the root, it looks like this:
 
 ```json
 {
@@ -52,8 +52,8 @@ When you generate a site, a `hyde.json` file will be generated in the root, it l
       "root": "/",
       "permalink": "/blog/:year/:month/:day/:title"
     },
-    "title": "Hyde Site",
-    "subtitle": "A site generated with Hyde",
+    "title": "nell Site",
+    "subtitle": "A site generated with nell",
     "author": "",
     "search": "http://google.com/search",
     "description": "",
@@ -86,7 +86,7 @@ Edit this file to change your site settings such as title, url, theme and menu.
 ## Plugins
 
 Plugins are modules that are included in your site `plugins` folder, as well as currently two included in the
-hyde directory - `dateformat` and `gist`.
+nell directory - `dateformat` and `gist`.
 
 Plugins can be used in posts with the `{% %}` tags - each plugin takes a set of required and optional arguments.
 For example, the gist plugin can be used like so in markdown
@@ -103,7 +103,7 @@ Plugins are still an early development and the format may change to support more
 they are simple synchronous functions that must return a value that can be output as a string (String, Number)
 
 ## Contributing
-Submit issues and suggestions to [https://github.com/tanepiper/hyde](https://github.com/tanepiper/hyde)
+Submit issues and suggestions to [https://github.com/tanepiper/nell](https://github.com/tanepiper/nell)
 
 ## Release History
 * 2nd December 2012

@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     nodeunit: {
-      files: ['test/hyde_test.js'],
+      files: ['test/nell_test.js'],
     },
     jshint: {
       options: {

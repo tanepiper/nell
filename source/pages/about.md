@@ -1,10 +1,10 @@
 <!--
 layout: page
-title: About Hyde
+title: About nell
 date: 2012-12-02 18:00
 published: true
 -->
 
-[Hyde](http://github.com/tanepiper/hyde) an opinionated static site generator using nodejs.
+[nell](http://github.com/tanepiper/nell) an opinionated static site generator using nodejs.
 
-Hyde uses Markdown for content, and jade for templating.
+nell uses Markdown for content, and jade for templating.

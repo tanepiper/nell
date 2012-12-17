@@ -5,8 +5,8 @@
       "root": "/",
       "permalink": "/blog/:year/:month/:day/:title"
     },
-    "title": "Hyde Site",
-    "subtitle": "A site generated with Hyde",
+    "title": "nell Site",
+    "subtitle": "A site generated with nell",
     "author": "",
     "search": "http://google.com/search",
     "description": "",
