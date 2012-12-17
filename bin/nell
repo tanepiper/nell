@@ -16,7 +16,7 @@ var path = require('path');
 var util = require('util');
 var winston = require('winston');
 var program = require('commander');
-var i18n = require(path.join(__dirname, '..', 'lib', 'i18n'));
+var i18n = require(path.join(__dirname, '..', 'support', 'i18n'));
 
 require('colorful').colorful();
 
