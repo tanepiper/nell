@@ -16,6 +16,7 @@ var path = require('path');
 var util = require('util');
 var winston = require('winston');
 var program = require('commander');
+var i18n = require(path.join(__dirname, '..', 'lib', 'i18n'));
 
 require('colorful').colorful();
 
@@ -47,7 +48,7 @@ var processCommand = function(command_name) {
     .action(function(args, cmd) {
       if (command.args && typeof args === 'undefined') {
         if (!command.default) {
-          return done( new Error(util.format('You have not passed the %s argument for command %s', command.args, command.key)));
+          return done( new Error(i18n.__('You have not passed the %s argument for command %s', command.args, command.key)));
         } 
         args = command.default;
       }
@@ -57,7 +58,7 @@ var processCommand = function(command_name) {
 
 program
   .version(pkg.version)
-  .option('-t --theme [name]', 'Overide the theme used in the nell.json file', String);
+  .option('-t --theme [name]', i18n.__('Overide the theme used in the nell.json file'), String);
 
 fs.readdirSync( path.join(__dirname, '..', 'lib') )
   .filter(function(file) { return file.indexOf('.js') !== -1; })
