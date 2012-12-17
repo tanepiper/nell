@@ -3,6 +3,9 @@
 An opinionated nodejs clone of [Octopress](http://octopress.org).  Not for production use as of yet, still in
 very active development.
 
+Note: This project was formally called hyde, but due to a python project of that name already that does a similar
+task I decided to rename it.  The new name comes from the name of my dog.
+
 ## Getting Started
 Install the module with: `npm install -g nell`
 
