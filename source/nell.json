@@ -5,15 +5,14 @@
       "root": "/",
       "permalink": "/blog/:year/:month/:day/:title"
     },
-    "title": "nell Site",
+    "title": "Nell Site",
     "subtitle": "A site generated with nell",
     "author": "",
     "search": "http://google.com/search",
     "description": "",
 
     "theme": {
-      "name": "default",
-      "index": "default.jade"
+      "name": "default"
     },
 
     "date_format": "dddd, dS mmmm yyyy @ h:MMTT",

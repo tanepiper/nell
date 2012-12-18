@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{{ site.title|title }}{% endblock %}</title>
+    
+    {% include 'head.html' %}  
+  </head>
+  <body>
+    {% include 'header.html' %}
+    
+    {% block body %}{% endblock %}
+    
+    {% include 'footer.html' %}
+  </body>
+</html>
