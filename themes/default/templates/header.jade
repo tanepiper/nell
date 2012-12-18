@@ -5,11 +5,13 @@ meta(name='description', content='#{site.description}')
 meta(name='author', content='#{site.author}')
 
 block stylesheets
-  link(href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css', rel='stylesheet')
+  link(href='/static/css/bootstrap.min.css', rel='stylesheet')
+  link(href='/static/css/bootstrap-responsive.min.css', rel='stylesheet')
+  link(href='/static/css/journal.css', rel='stylesheet')
 
 block header-scripts
   //- Header scripts here
-  script(src='http://code.jquery.com/jquery.min.js')
-  script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js')
+  script(src='/static/js/jquery.min.js')
+  script(src='/static/js/bootstrap.min.js')
 
 include partials/nav

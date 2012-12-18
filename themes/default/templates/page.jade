@@ -1,8 +1,14 @@
 extends default
 
 block body
-  .post
-    h1= page.title
+  .container-fluid
+    .row-fluid
+      .span8
+        .post
+          h1= page.title
 
-    .main.well
-      != page.content
+          .main.well
+            != page.content
+
+      .span4
+        include sidebar

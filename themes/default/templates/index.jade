@@ -7,9 +7,10 @@ block body
         - if (posts) {
           - posts.forEach(function(post) {
             .post
-              h1= post.title
+              h1
+                a(href=post.link)= post.title
 
-              .meta.alert.alert-info
+              .meta.well
                 | Posted on #{plugins.dateformat(post.date, site.date_format)}
                 - if (post.categories) {
                   |&nbsp;in categories #{post.categories.join(', ')}

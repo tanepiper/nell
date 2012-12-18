@@ -15,7 +15,9 @@ Install the module with: `npm install -g nell`
 
 * `nell generate` - Generate a static version of your site to the `./output` folder
 
-* `nell preview` - Preview the static site with express
+* `nell preview <port>` - Preview the static site with express with optional port (default 4000)
+
+* `nell watch <port>` - Preview the static site and re-generate on changes in the ./source or ./themes folder`
 
 * `nell new_post <name>` - Create a new markdown post
 

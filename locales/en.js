@@ -11,5 +11,6 @@
 	"Provides date formatting tools, see https://github.com/felixge/node-dateformat for full docs": "Provides date formatting tools, see https://github.com/felixge/node-dateformat for full docs",
 	"Site \"%s\" generated in %ds": "Site \"%s\" generated in %ds",
 	"Takes a gist id and optional filename and returns a gist embed": "Takes a gist id and optional filename and returns a gist embed",
-	"Preview the site and build when any file changes are made": "Preview the site and build when any file changes are made"
+	"Preview the site and build when any file changes are made": "Preview the site and build when any file changes are made",
+	"Page \"%s\" created in %s": "Page \"%s\" created in %s"
 }

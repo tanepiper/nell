@@ -7,6 +7,8 @@
 
       - posts.forEach(function(post) {
         li
-          a(href='#{post.link}')= post.title
+          p
+            div.date #{plugins.dateformat(post.date, 'dS mmmm yyyy @ h:MMTT')}
+            a(href='#{post.link}')= post.title
       - });
 - }
