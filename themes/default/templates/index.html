@@ -6,7 +6,7 @@
       {% for post in posts %}
         <article class="post span8">
           <header>
-            <h1><a href="{{post.link}}">{{post.title}}</a></h1>
+            <h1><a href="{{post.link}}">{{post.title|title}}</a></h1>
           </header>
           
           <section class="main well">

@@ -1,7 +1,7 @@
 {
   "name": "nell",
-  "description": "A simple static site generator",
-  "version": "0.2.4",
+  "description": "A static site generator with markdown and swig templates",
+  "version": "0.2.5",
   "homepage": "https://github.com/tanepiper/nell",
   "author": {
     "name": "Tane Piper",
@@ -39,11 +39,8 @@
   "keywords": [],
   "dependencies": {
     "dateformat": "~1.0.3-1.2.3",
-    "cli-color": "~0.2.1",
     "markdown-extra": "~0.0.2",
     "commander": "~1.1.1",
-    "jade": "~0.27.7",
-    "optimist": "~0.3.5",
     "express": "~3.0.3",
     "mkdirp": "~0.3.4",
     "wrench": "~1.4.4",
