@@ -9,4 +9,6 @@ published: true
 
 Welcome to [nell](http://github.com/tanepiper/nell) - an opinionated static site generator using nodejs.
 
-{% gist 4202899 interval.js %}
+{{ 4202899|gist("butt.js") }}
+
+{{ "XX7IZTLzm0M"|youtube }}

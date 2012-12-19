@@ -16,12 +16,18 @@ var path = require('path');
 var util = require('util');
 var winston = require('winston');
 var program = require('commander');
-var i18n = require(path.join(__dirname, '..', 'support', 'i18n'));
+var i18n = require('i18n');
 
 require('colorful').colorful();
 
 var pkg = require(__dirname + '/../package.json');
 var site_path = process.cwd();
+
+ i18n.configure({
+  locales: ['en'],
+  directory: path.join(__dirname, '..', 'locales'),
+  register: global
+});
 
 var logger = new(winston.Logger)({
   transports: [

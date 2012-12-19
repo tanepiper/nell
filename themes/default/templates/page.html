@@ -1,0 +1,25 @@
+{% extends 'default.html' %}
+
+{% block body %}
+  <section class="container-fluid">
+    <div class="row-fluid">
+      <article class="post span8">
+        <header>
+          <h1>{{page.title|title}}</h1>
+        </header>
+        
+        <section class="main well">
+          {{page.content}}
+        </section>
+        
+        <footer>
+          
+        </footer>
+      </article>
+      
+      <aside class="span4">
+        {% include 'sidebar.html' %}
+      </aside>
+    </div>
+  </section>
+{% endblock %}

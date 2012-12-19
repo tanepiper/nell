@@ -1,0 +1,32 @@
+{% extends 'default.html' %}
+
+{% block body %}
+  <section class="container-fluid">
+    <div class="row-fluid">
+      {% for post in posts %}
+        <article class="post span8">
+          <header>
+            <h1><a href="{{post.link}}">{{post.title|title}}</a></h1>
+          </header>
+          
+          <section class="main well">
+            {{post.content}}
+          </section>
+          
+          <footer>
+            <section class="meta well">
+              Posted on <time>{{post.date|date('l, d F Y - H:s')}}</time>
+              {% if post.categories %}
+                in {{post.categories|join(', ')}}
+              {% endif %}
+            </section>
+          </footer>
+        </article>
+      {% endfor %}
+      
+      <aside class="span4">
+        {% include 'sidebar.html' %}
+      </aside>
+    </div>
+  </section>
+{% endblock %}

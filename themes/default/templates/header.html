@@ -1,0 +1,23 @@
+<header class="navbar navbar-static top">
+  <section class="navbar-inner">
+    <div class="container">
+      <a href="#" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      
+      <a href="/" class="brand">{{site.title|title}}</a>
+      
+      <nav>
+        <ul class="nav">
+          {% for item in menu %}
+            <li>
+              <a href="{{item.path}}">{{item.title}}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </section>
+</header>
