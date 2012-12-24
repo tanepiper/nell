@@ -1,0 +1,215 @@
+{% extends 'default.html' %}
+
+{%block headerscripts %}
+  <script src="/js/codemirror/lib/codemirror.js"></script>
+  <script src="/js/codemirror/mode/markdown/markdown.js"></script>
+  <script src="/js/marked.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
+  <script src="/js/bootstrap-tagmanager.js"></script>
+
+{% endblock %}
+
+{% block pagestyles %}
+  <link rel="stylesheet" type="text/css" href="/js/codemirror/lib/codemirror.css" />
+  <link rel="stylesheet" type="text/css" href="/css/datepicker.css" />
+  <link rel="stylesheet" type="text/css" href="/css/tagmanager.css" />
+  <style>
+  .CodeMirror {
+    border: 1px solid black;
+    border-radius: 0.4em;
+  }
+  </style>
+{% endblock %}
+
+{% block dashboardcontent %}
+  <section class="add-item">
+    <form id="item-form">
+      <section class="meta span4">
+        <fieldset>
+          <h1>Entry Information</h1>
+          <label>Entry Title</label>
+          <input type="text" name="title" placeholder="Enter the post title" value="{{metadata.title}}" required />
+          <label>Entry Date</label>
+          <input type="text" name="entry-date" class="datepicker span2" value="" data-date-format="yyyy-mm-dd hh:ii" value="{{metadata.date}}" required />
+          <label>Categories</label>
+          <input type="text" name="tags" placeholder="Tags" class="tags"/>
+          <br />
+          <button class="btn btn-danger" type="button" title="Delete All Tags"><i class="icon-trash"></i></button>
+        </fieldset>
+        <fielset>
+          <h1>Entry Options</h1>
+          <label class="checkbox">
+            <input type="checkbox" class="checkbox enable-comments"> Enable Comments
+          </label>
+        </fieldset>
+      </section>
+      
+      <section class="content span8">
+        <section class="row-fluid">
+          
+          <section class="code-entry">
+            <div class="editor well well-small">
+              
+              <section class="btn-toolbar">
+                <div class="btn-group">
+                    <div class="btn-group">
+                      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="Header size (H1-H6)"><i class="icon-text-height"></i></a>
+                      <ul class="dropdown-menu header-side-menu" role="menu">
+                        <li><a href="#" class="h1" data-value="1">H1</a></li>
+                        <li><a href="#" class="h2" data-value="2">H2</a></li>
+                        <li><a href="#" class="h3" data-value="3">H3</a></li>
+                        <li><a href="#" class="h4" data-value="4">H4</a></li>
+                        <li><a href="#" class="h5" data-value="5">H5</a></li>
+                        <li><a href="#" class="h6" data-value="6">H6</a></li>
+                      </ul>
+                    </div>
+                    <button class="btn bold" title="Bold"><i class="icon-bold"></i></button>
+                    <button class="btn italic" title="Italic"><i class="icon-italic"></i></button>
+                    <button class="btn list-item" title="Add List Item"><i class="icon-list"></i></button>
+                </div>
+                <div class="btn-group pull-right">
+                  <button class="btn btn-success save" title="Save">Save</button>
+                </div>
+              </section>
+              
+              <textarea class="ide-editor-textarea" name="code" style="width: 98%; height: 300px;">
+{{content}}</textarea>
+              <footer>
+                <span class="total-words">Total Words: <span class="value">0</value></span>
+                <span class="total-titles">Total Titles: <span class="value">0</value></span>
+                <span class="total-links">Total Links: <span class="value">0</value></span>
+              </footer>
+          </div>
+        </section>
+      </section>
+      
+      <section class="row-fluid">
+        <section class="html-output">
+          <iframe id="preview" frameborder="0" width="100%" height="600"></iframe>
+        </section>
+      </section>
+    </section>
+  </form>
+</section>
+
+  
+<script type="text/javascript">
+  $(function() {
+    var delay;
+
+    $('.ide-editor-textarea').on('keyup', function(e) {
+      clearTimeout(delay);
+      delay = setTimeout(updatePreview, 200);
+    });
+    function updatePreview() {
+      var previewFrame = document.getElementById('preview');
+      var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+
+      var value = $('.ide-editor-textarea').val();
+      var total_words = value.split(' ').length;
+      var titles = value.match(/#{1,6}$/gim);
+      console.log(titles);
+      var total_titles = titles ? titles.length : 0;
+      var output = marked(value);
+
+      preview.open();
+      preview.write(output);
+      preview.close();
+
+      $('.total-words .value').text(total_words);
+      $('.total-titles .value').text(total_titles);
+    }
+    setTimeout(updatePreview, 300);
+  })
+
+  /*
+    $(function() {
+      var delay;
+      var editor;
+
+      function createHeader(num) {
+        var str = '';
+        for (var i = 0; i < num; i++) {
+          str += '#';
+        }
+        return str;
+      }
+
+      $('.datepicker').datepicker();
+      $('.tags').tagsManager();
+
+      $('.header-side-menu li a').on('click', function(e) {
+        e.preventDefault();
+
+        var times = $(this).data('value');
+        var header = createHeader(times);
+        var value = header + (editor.getSelection()).replace('#', '');
+        editor.replaceSelection(value);
+      });
+
+
+      $('.bold').on('click', function(e) {
+        e.preventDefault();
+        var value = '__' + editor.getSelection() + '__';
+        editor.replaceSelection(value);
+      });
+
+      $('.italic').on('click', function(e) {
+        e.preventDefault();
+        var value = '_' + editor.getSelection() + '_';
+        editor.replaceSelection(value);
+      });
+
+      $('#item-form').on('submit', function(e) {
+        console.log(this);
+        e.preventDefault();
+        $.post('/save-entry', {
+          title: $('input[name="title"]').val(),
+          date: $('input[name="date"]').val(),
+          content: $('.ide-editor-textarea').val()
+        }, function(data) {
+          console.log($(data));
+        });
+      });
+
+      $('.list-item').on('click', function(e) {
+        e.preventDefault();
+        var value = '* ';
+        var text = editor.getSelection();
+        console.log(text);
+        if (text && text !== '') {
+          value += text;
+          value = '\n' + value;
+        } else {
+
+        }
+        editor.replaceSelection(value);
+      });
+
+      // Initialize CodeMirror editor with a nice html5 canvas demo.
+      editor = CodeMirror.fromTextArea(document.querySelector('.ide-editor-textarea'), {
+        mode: 'text/x-markdown',
+        tabMode: 'indent',
+        tabSize: 2,
+        lineNumbers: true
+      });
+      editor.on("change", function() {
+        clearTimeout(delay);
+        delay = setTimeout(updatePreview, 200);
+      });
+      
+      function updatePreview() {
+        var previewFrame = document.getElementById('preview');
+        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+
+        var output = marked(editor.getValue());
+
+        preview.open();
+        preview.write(output);
+        preview.close();
+      }
+      setTimeout(updatePreview, 300);
+    });
+  */
+  </script>
+{% endblock %}

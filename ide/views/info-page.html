@@ -1,0 +1,40 @@
+{% extends 'default.html' %}
+
+{% block dashboardcontent %}
+  <section class="page-info">
+    <form>
+      <ul class="nav nav-list">
+        <li class="nav-header">Site Info</li>
+          <fieldset>
+            <label>Site Title</label>
+            <input type="text" class="input-xlarge" name="site.title" value="{{config.site.title}}" />
+            <label>Subtitle</label>
+            <input type="text" class="input-xlarge" name="site.subtitle" value="{{config.site.subtitle}}" />
+            <label>Author</label>
+            <input type="text" class="input-xlarge" name="site.author" value="{{config.site.author}}" />
+            <label>Search</label>
+            <input type="text" class="input-xlarge" name="site.search" value="{{config.site.search}}" />
+            <label>Description</label>
+            <input type="text" class="input-xlarge" name="site.description" value="{{config.site.description}}" />
+            <label>Theme</label>
+            <select name="site.theme.name" class="input-large">
+              <option value="default">Default</option>
+            </select>
+            <label>Date Format</label>
+            <input type="text" class="input-xlarge" name="site.date_format" value="{{config.site.date_format}}" />
+          </fieldset>
+        </li>
+        <li class="nav-header">Site URL</li>
+          <fieldset>
+            <label>HREF</label>
+            <input type="url" class="input-xlarge" name="site.url.href" value="{{config.site.url.href}}" />
+            <label>Root</label>
+            <input type="text" class="input-xlarge" name="site.url.root" value="{{config.site.url.root}}" />
+            <label>Peralink</label>
+            <input type="text" class="input-xlarge" name="site.url.permalink" value="{{config.site.url.permalink}}" />
+          </fieldset>
+        </li>
+      </ul>
+    </form>
+  </section>
+{% endblock %}

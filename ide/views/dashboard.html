@@ -1,0 +1,38 @@
+{% extends 'default.html' %}
+
+{% block dashboardcontent %}
+  <section class="dashboard hero-unit">
+    <h1>Dashboard</h1>
+    <div class="row-fluid">
+      <div class="span3">
+        <header>
+          <h2>Site Stats</h2>
+        </header>
+        <article>
+          <table class="table table-bordered">
+            <tr>
+              <td>Total Pages</td>
+              <td>{{total_pages}}</td>
+            </tr>
+            <tr>
+              <td>Total Posts</td>
+              <td>{{total_posts}}</td>
+            </tr>
+          </table>
+        </article>
+      </div>
+      
+      <div class="span3">
+        <header>
+          <h2>Recent Files</h2>
+        </header>
+        <article>
+          <ul>
+            {% for item in items %}
+              <li><a href="/file/{{item[0]}}/{{item[1]}}">{{item[1]}}</a></li>
+            {% endfor %}
+          </ul>
+        </article>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/css/toastr.css" />
+    
+    
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/keypress.js"></script>
+    <script src="/js/toastr.js"></script>
+    <script>
+      $(function() {
+
+        keypress.combo("alt n", function() {
+          $.get('/new-item', function(data) {
+            toastr.success('Shortcut Fired', 'New Post')
+            $('body').html(data);
+          });
+        });
+
+        $('.info').on('click', function(e) {
+          e.preventDefault();
+          $.get('/get-modal', {modal: 'info'}, function(data) {
+            $(data).modal('show');
+          });
+        });
+
+        $('.top .nav a').on('click', function(e) {
+          e.preventDefault();
+          $.get('/site-info', function(data) {
+            $('body').html(data);
+          });
+        })
+      });
+    </script>
+    {% block headerscripts %}
+    
+    {% endblock %}
+    
+    {% block pagestyles %}
+    
+    {% endblock %}
+  </head>
+  <body>
+    <section class="container-fluid">
+      <section="row-fluid">
+        <header class="navbar navbar-fixed-static top">
+          <section class="navbar-inner">
+            <a class="brand">NellIDE - {{config.site.title}}</a>
+            <ul class="nav">
+              <li><a href="/">Dashboard</a></li>
+              <li><a href="/site-info">Site Info</a></li>
+              <li><a href="/new-item">Add Item</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              <li><a href="#" class="info"><i class="icon-info-sign"></i></a></li>
+            </ul>
+        </header>
+        
+        <section class="content-wrapper">
+          {% block dashboardcontent %}{% endblock %}
+        </section>
+      </section>
+    </section>
+  </body>
+</html>

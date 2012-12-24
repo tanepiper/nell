@@ -1,0 +1,6 @@
+    
+    {% block headerscripts %}{% endbock %}
+    
+    {% block pagestyles %}{% endblock %}
+    
+    {% block dashboardcontent %}{$ endblock %}
